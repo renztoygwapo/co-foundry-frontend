@@ -15,10 +15,6 @@ import { useUtilStore } from '@/store/util'
 
 const util = useUtilStore()
 
-console.log(util.layoutAction)
-
-
-const activeLayout = ref(2)
-
+const activeLayout = ref(1)
 
 </script>
