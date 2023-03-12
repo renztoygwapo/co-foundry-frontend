@@ -4,6 +4,7 @@
     <LayoutTwo v-if="util.layoutAction === 2"/>
     <LayoutThree v-else-if="util.layoutAction === 3"/>
     <LayoutOne v-else/>
+    <Modal v-if="util.open"/>
   </div>
 </template>
 

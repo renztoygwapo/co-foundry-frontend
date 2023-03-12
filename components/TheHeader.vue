@@ -13,7 +13,7 @@
           </button>
         </div>
         <div class="hidden lg:flex">
-            <button type="button" class="rounded-md bg-indigo-600 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
+            <button @click="savePhoto" type="button" class="rounded-md bg-indigo-600 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Save</button>
         </div>
       </nav>
       <Dialog as="div" class="lg:hidden" @close="mobileMenuOpen = false" :open="mobileMenuOpen">
@@ -31,7 +31,7 @@
                 <a v-for="item in navigation" :key="item.name" :href="item.href" @click="onSelectLayout(item.value)" :class="item.value === util.layoutAction ? 'bg-indigo-500' : 'bg-indigo-200'" class="-mx-3 block rounded-lg py-2 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">{{ item.name }}</a>
               </div>
               <div class="py-6">
-                <a href="#" class="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Log in</a>
+                <a href="#" @click="savePhoto" class="-mx-3 block rounded-lg py-2.5 px-3 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">Save</a>
               </div>
             </div>
           </div>
@@ -59,6 +59,10 @@
 
   const onSelectLayout = (async (payload) => {
     await util.selectLayoutAction(payload)
+  })
+
+  const savePhoto = (async () => {
+    util.toggleModal()
   })
 
   </script>

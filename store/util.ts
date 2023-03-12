@@ -2,7 +2,10 @@ import { defineStore } from 'pinia'
 
 export const useUtilStore = defineStore('util', {
   state: () => ({
-    layoutAction: ''
+    layoutAction: '',
+    open: false,
+    cropImageOne: '',
+    imgCoordinates: {}
   }),
   actions: {
     async selectLayoutAction (payload: any) {
@@ -32,5 +35,12 @@ export const useUtilStore = defineStore('util', {
           console.error('Error:', error)
         })
     },
+    async toggleModal() {
+        this.open = !this.open
+    },
+    async setImage(url: string, coordinates: any) {
+        this.cropImageOne = url
+        this.imgCoordinates = coordinates
+    }
   }
 })
