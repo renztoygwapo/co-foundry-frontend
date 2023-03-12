@@ -3,7 +3,7 @@
       <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <div class="flex items-center gap-x-12">
           <div class="hidden lg:flex lg:gap-x-12">
-            <button v-for="item in navigation" :key="item.name" :href="item.href" class="rounded-md bg-indigo-200 py-2.5 px-3.5 text-sm text-white shadow-sm hover:bg-indigo-500 text-sm font-semibold leading-6 text-gray-900">{{ item.name }}</button>
+            <button v-for="item in navigation" :key="item.name" :href="item.href" @click="onSelectLayout(item.value)" class="rounded-md bg-indigo-200 py-2.5 px-3.5 text-sm text-white shadow-sm hover:bg-indigo-500 text-sm font-semibold leading-6 text-gray-900">{{ item.name }}</button>
           </div>
         </div>
         <div class="flex lg:hidden">
@@ -48,12 +48,21 @@
   import { ref } from 'vue' 
   import { Dialog, DialogPanel } from '@headlessui/vue'
   import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+  import { useUtilStore } from '@/store/util'
+
   
   const navigation = [
-    { name: '1', href: '#' },
-    { name: '2', href: '#' },
-    { name: '3', href: '#' },
+    { name: '1', href: '#', value: 1 },
+    { name: '2', href: '#', value: 2 },
+    { name: '3', href: '#', value: 3 },
   ]
   
   const mobileMenuOpen = ref(false)
+
+  const util = useUtilStore()
+
+  const onSelectLayout = (async (payload) => {
+    await util.selectLayoutAction(payload)
+  })
+
   </script>
