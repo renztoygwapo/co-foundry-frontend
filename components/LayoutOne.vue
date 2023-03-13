@@ -1,5 +1,5 @@
 <template>
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="bg-gray-50 p-5 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!-- cropper -->
             <cropper
                 v-if="photoPath"
@@ -51,7 +51,11 @@ const onSelectPhoto = (async (e) => {
 
 // cropper img
 const cropImg = (async ({ coordinates, canvas }) => {
-    util.setImage(`http://co-foundry-api.test/image/${coordinates.width}/${coordinates.height}/${coordinates.left}/${coordinates.top}`, coordinates)
+    util.setImage(
+        `http://co-foundry-api.test/image/${coordinates.width}/${coordinates.height}/${coordinates.left}/${coordinates.top}`,
+        coordinates,
+        0
+    )
 })
 </script>
 

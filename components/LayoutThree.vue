@@ -1,7 +1,7 @@
 <template>
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            <div v-for="photo in photos" :key="photo.name" class="relative flex items-center space-x-3 rounded-lg bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
+            <div v-for="photo in photos" :key="photo.name" :class="photo.className" class="relative flex items-center space-x-3 rounded-lg bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
             <div class="min-w-0 flex-1">
                 <p class="text-sm font-medium text-gray-900">{{ photo.name }}</p>
                 <cropper
@@ -50,17 +50,20 @@ const photos = ref([
   {
     code: 1,
     name: 'Photo 1',
-    photoPath: ''
+    photoPath: '',
+    className: 'row-span-2 h-full w-full bg-gray-50'
   },
   {
     code: 2,
     name: 'Photo 2',
-    photoPath: ''
+    photoPath: '',
+    className: 'col-span-1 h-full w-full bg-gray-50'
   },
   {
     code: 3,
     name: 'Photo 3',
-    photoPath: ''
+    photoPath: '',
+    className: 'col-span-1 h-full w-full bg-gray-50'
   }
 ])
 
@@ -69,7 +72,6 @@ const onSelectPhoto = (async (e) => {
     const file = e.target.files[0]
     photo.value = file
     // photoPath.value = URL.createObjectURL(file)
-    console.log(photos[selectedCode.value - 1])
 
     photos.value[selectedCode.value - 1].photoPath = URL.createObjectURL(file)
 
@@ -81,7 +83,11 @@ const onSelectPhoto = (async (e) => {
 
 // cropper img
 const cropImg = (async ({ coordinates, canvas }) => {
-    util.setImage(`http://co-foundry-api.test/image/${coordinates.width}/${coordinates.height}/${coordinates.left}/${coordinates.top}`, coordinates)
+    util.setImage(
+        `http://co-foundry-api.test/image/${coordinates.width}/${coordinates.height}/${coordinates.left}/${coordinates.top}`,
+        coordinates,
+        selectedCode.value - 1
+    )
 })
 </script>
 

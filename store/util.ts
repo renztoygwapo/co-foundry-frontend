@@ -4,8 +4,7 @@ export const useUtilStore = defineStore('util', {
   state: () => ({
     layoutAction: 2,
     open: false,
-    cropImageOne: '',
-    imgCoordinates: {}
+    savedImages: []
   }),
   actions: {
     async selectLayoutAction (payload: any) {
@@ -38,9 +37,9 @@ export const useUtilStore = defineStore('util', {
     async toggleModal() {
         this.open = !this.open
     },
-    async setImage(url: string, coordinates: any) {
-        this.cropImageOne = url
-        this.imgCoordinates = coordinates
+    async setImage(url: string, coordinates: any, i: any) {
+        this.savedImages[i] = {url: url, coor: coordinates}
+        this.savedImages.join()
     }
   }
 })

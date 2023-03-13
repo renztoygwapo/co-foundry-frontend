@@ -48,9 +48,9 @@
 
   
   const navigation = [
-    { name: '1', href: '#', value: 1 },
-    { name: '2', href: '#', value: 2 },
-    { name: '3', href: '#', value: 3 },
+    { name: '1', href: '#', value: 1},
+    { name: '2', href: '#', value: 2},
+    { name: '3', href: '#', value: 3}
   ]
   
   const mobileMenuOpen = ref(false)
