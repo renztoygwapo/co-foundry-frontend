@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useUtilStore = defineStore('util', {
   state: () => ({
-    layoutAction: '',
+    layoutAction: 2,
     open: false,
     cropImageOne: '',
     imgCoordinates: {}
