@@ -66,7 +66,6 @@ const photos = ref([
 const onSelectPhoto = (async (e) => {
     const file = e.target.files[0]
     photo.value = file
-    // photoPath.value = URL.createObjectURL(file)
 
     photos.value[selectedCode.value - 1].photoPath = URL.createObjectURL(file)
 
