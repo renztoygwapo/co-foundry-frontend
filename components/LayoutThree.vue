@@ -11,7 +11,7 @@
                 :stencil-props="{
                     aspectRatio: 10/12
                 }"
-                @change="cropImg"
+                @change="cropImg(photo.code)"
             />
             <button @click="fileOPen(photo.code)" type="button" class="w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
             <svg class="mx-auto h-12 w-12 text-gray-400"  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
@@ -48,19 +48,19 @@ const fileOPen = (async (code) => {
 
 const photos = ref([
   {
-    code: 1,
+    code: 4,
     name: 'Photo 1',
     photoPath: '',
     className: 'row-span-2 h-full w-full bg-gray-50'
   },
   {
-    code: 2,
+    code: 5,
     name: 'Photo 2',
     photoPath: '',
     className: 'col-span-1 h-full w-full bg-gray-50'
   },
   {
-    code: 3,
+    code: 6,
     name: 'Photo 3',
     photoPath: '',
     className: 'col-span-1 h-full w-full bg-gray-50'
@@ -75,16 +75,17 @@ const onSelectPhoto = (async (e) => {
 
     photos.value[selectedCode.value - 1].photoPath = URL.createObjectURL(file)
 
-
-    // const formData = new FormData();
-    // formData.append('image', photo.value);
-    // util.uploadPhoto('http://co-foundry-api.test/api/image', formData)
+    const formData = new FormData();
+    formData.append('image', photo.value);
+    formData.append('layout', 3)
+    util.uploadPhoto('http://co-foundry-api.test/api/image', formData)
 })
 
 // cropper img
-const cropImg = (async ({ coordinates, canvas }) => {
+const cropImg = (async ({ coordinates, canvas }, selectCrop) => {
+    console.log(selectCrop)
     util.setImage(
-        `http://co-foundry-api.test/image/${coordinates.width}/${coordinates.height}/${coordinates.left}/${coordinates.top}`,
+        `http://co-foundry-api.test/image/${coordinates.width}/${coordinates.height}/${coordinates.left}/${coordinates.top}/3`,
         coordinates,
         selectedCode.value - 1
     )

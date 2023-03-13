@@ -46,13 +46,14 @@ const onSelectPhoto = (async (e) => {
 
     const formData = new FormData();
     formData.append('image', photo.value);
+    formData.append('layout', 1)
     util.uploadPhoto('http://co-foundry-api.test/api/image', formData)
 })
 
 // cropper img
 const cropImg = (async ({ coordinates, canvas }) => {
     util.setImage(
-        `http://co-foundry-api.test/image/${coordinates.width}/${coordinates.height}/${coordinates.left}/${coordinates.top}`,
+        `http://co-foundry-api.test/image/${coordinates.width}/${coordinates.height}/${coordinates.left}/${coordinates.top}/1`,
         coordinates,
         0
     )

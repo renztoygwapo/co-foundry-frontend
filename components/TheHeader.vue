@@ -59,6 +59,8 @@
 
   const onSelectLayout = (async (payload) => {
     await util.selectLayoutAction(payload)
+    // clear the photo
+    await util.resetImages()
   })
 
   const savePhoto = (async () => {

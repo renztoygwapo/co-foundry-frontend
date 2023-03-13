@@ -40,6 +40,9 @@ export const useUtilStore = defineStore('util', {
     async setImage(url: string, coordinates: any, i: any) {
         this.savedImages[i] = {url: url, coor: coordinates}
         this.savedImages.join()
+    },
+    async resetImages() {
+        this.savedImages = []
     }
   }
 })
