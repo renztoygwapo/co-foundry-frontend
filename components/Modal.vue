@@ -11,9 +11,9 @@
               <DialogPanel class="relative transform overflow-hidden rounded-lg bg-white px-4 pt-5 pb-4 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg sm:p-6">
                 <div v-for="item in util.savedImages" :key="item">
                   <template v-if="item">
-                        <div class="block">
-                        {{ item.coor }}
-                    </div>
+                        <div class="absolute bg-white text-center mx-auto p-2">
+                            {{ item.coor }}
+                        </div>
                     <div class="mt-3 text-center sm:mt-5">
                         <img :src="item.url" class="w-full h-full" />
                     </div>
@@ -21,11 +21,12 @@
                 </div>
                 <div class="mt-5 sm:mt-6 sm:grid sm:grid-flow-row-dense sm:grid-cols-1 sm:gap-1">
                   <button type="button" class="mt-3 inline-flex w-full justify-center rounded-md bg-red px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:col-start-1 sm:mt-0" @click="util.toggleModal()" ref="cancelButtonRef">Cancel</button>
-                </div>
+              </div>
               </DialogPanel>
             </TransitionChild>
           </div>
         </div>
+        
       </Dialog>
     </TransitionRoot>
   </template>
